@@ -8,7 +8,7 @@ import {
   ShieldCheck,
   ShoppingCart,
   Truck,
-  UserRound,
+  UserCircle,
   type LucideIcon,
 } from 'lucide-react'
 import econverseLogo from '@/assets/brand-econverse.png'
@@ -36,7 +36,7 @@ type Category = {
 
 const categories: Category[] = [
   { label: 'Todas categorias', href: '#categories', hasMenu: true },
-  { label: 'Supermercado', href: '#supermercado' },
+  { label: 'Supermercado', href: '#supermarket' },
   { label: 'Livros', href: '#books' },
   { label: 'Moda', href: '#fashion' },
   { label: 'Lançamentos', href: '#launches' },
@@ -50,7 +50,7 @@ function BenefitsBar() {
       <ul className="benefits-list container">
         {benefits.map(({ icon: Icon, before, emphasis, after }) => (
           <li className="benefit-item" key={emphasis}>
-            <Icon className="benefit-icon" aria-hidden="true" size={20} strokeWidth={2} />
+            <Icon className="benefit-icon" aria-hidden="true" size={20} />
             <p className="benefit-copy">
               {before && <span>{before} </span>}
               <strong>{emphasis}</strong>
@@ -90,17 +90,22 @@ function SearchForm() {
 function HeaderActions() {
   return (
     <div className="header-actions" role="group" aria-label="Acesso rápido">
-      <button className="header-action" type="button" aria-label="Favoritos">
-        <Heart aria-hidden="true" size={22} />
+      <button className="header-action" type="button" aria-label="Favoritos" title="Favoritos">
+        <Heart aria-hidden="true" size={26} />
       </button>
-      <button className="header-action" type="button" aria-label="Meus pedidos">
-        <Package aria-hidden="true" size={22} />
+      <button
+        className="header-action"
+        type="button"
+        aria-label="Meus pedidos"
+        title="Meus pedidos"
+      >
+        <Package aria-hidden="true" size={26} />
       </button>
-      <button className="header-action" type="button" aria-label="Minha conta">
-        <UserRound aria-hidden="true" size={22} />
+      <button className="header-action" type="button" aria-label="Minha conta" title="Minha conta">
+        <UserCircle aria-hidden="true" size={26} />
       </button>
-      <button className="header-action" type="button" aria-label="Carrinho">
-        <ShoppingCart aria-hidden="true" size={22} />
+      <button className="header-action" type="button" aria-label="Carrinho" title="Carrinho">
+        <ShoppingCart aria-hidden="true" size={26} />
       </button>
     </div>
   )

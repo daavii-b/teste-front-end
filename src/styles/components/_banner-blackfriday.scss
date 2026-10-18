@@ -40,6 +40,7 @@
 }
 
 .banner-blackfriday__offer {
+  width: min(100%, 343px);
   margin: var(--space-3) 0 0;
   font-size: clamp(var(--font-size-xl), 4vw, var(--font-size-2xl));
   font-weight: 700;
@@ -52,6 +53,8 @@
 
 .banner-blackfriday__link {
   display: inline-flex;
+  width: min(100%, 206px);
+  margin-left: var(--space-3);
   min-height: 40px;
   align-items: center;
   justify-content: center;
