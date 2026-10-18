@@ -1,0 +1,23 @@
+$font-size-step: 0.25rem; // 4px
+
+$font-sizes: (
+  'xs': $font-size-step * 3, // 12px
+  'base': $font-size-step * 4, // 16px
+  'lg': $font-size-step * 5, // 20px
+  'xl': $font-size-step * 6, // 24px
+  '2xl': $font-size-step * 8,// 32px
+  '3xl': $font-size-step * 10, // 40px
+  '4xl': $font-size-step * 12, // 48px
+);
+
+:root {
+  @each $name, $size in $font-sizes {
+    --font-size-#{$name}: #{$size};
+  }
+}
+
+@each $name, $size in $font-sizes {
+  .text-#{$name} {
+    font-size: var(--font-size-#{$name});
+  }
+}

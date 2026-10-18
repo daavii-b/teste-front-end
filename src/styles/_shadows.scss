@@ -1,0 +1,9 @@
+$shadows: (
+  'header-layer': 0 8px 16px 0 rgb(57 48 19 / 12%),
+);
+
+:root {
+  @each $name, $value in $shadows {
+    --shadow-#{$name}: #{$value};
+  }
+}

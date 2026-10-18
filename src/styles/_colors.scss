@@ -1,0 +1,23 @@
+$palette: (
+  'accent': #f7ca11,
+  'accent-foreground': #271c47,
+  'primary': #3442b5,
+  'primary-foreground': #ffffff,
+  'background': #ffffff,
+  'foreground': #3f3f40,
+  'muted-foreground': #9F9F9F,
+  'subtle-foreground': #9F9F9F,
+  'muted': #f6f5f2,
+  'white': #ffffff,
+  'black': #000000,
+  'border': #e9e9ed,
+  'border-subtle': #f0f0f0,
+  'border-strong': #e6e6e8,
+  'icon-muted': #808080,
+);
+
+:root {
+  @each $name, $value in $palette {
+    --color-#{$name}: #{$value};
+  }
+}
