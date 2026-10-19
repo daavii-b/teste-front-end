@@ -4,6 +4,7 @@ import { Container } from '@/components/container'
 import { BannerBlackFriday } from '@/components/banner-blackfriday'
 import { ProductCarousel } from '@/components/product-carousel'
 import { PartnerSupport } from '@/components/partner-support'
+import { BrandNavigation } from '@/components/brand-navigation'
 import { ShopByCategory } from '@/components/shop-by-category'
 import type { Product } from '@/api/products/types'
 
@@ -30,13 +31,10 @@ function App() {
         tabs={['Celular', 'Acessórios', 'Tablets', 'Notebooks', 'TVs', 'Ver todos']}
       />
       <PartnerSupport />
-      <ProductCarousel
-        title="Produtos relacionados"
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-        products={PRODUCTS}
-      />
+      <ProductCarousel title="Produtos relacionados" products={PRODUCTS} />
       <PartnerSupport />
+      <BrandNavigation />
+      <ProductCarousel title="Produtos relacionados" products={PRODUCTS} />
     </Container>
   )
 }
