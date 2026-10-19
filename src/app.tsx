@@ -5,6 +5,7 @@ import { BannerBlackFriday } from '@/components/banner-blackfriday'
 import { ProductCarousel } from '@/components/product-carousel'
 import { PartnerSupport } from '@/components/partner-support'
 import { BrandNavigation } from '@/components/brand-navigation'
+import { Footer } from '@/components/footer'
 import { ShopByCategory } from '@/components/shop-by-category'
 import type { Product } from '@/api/products/types'
 
@@ -35,6 +36,7 @@ function App() {
       <PartnerSupport />
       <BrandNavigation />
       <ProductCarousel title="Produtos relacionados" products={PRODUCTS} />
+      <Footer />
     </Container>
   )
 }
