@@ -25,7 +25,7 @@ export function ProductCard({ product, onBuy, onSelect }: ProductCardProps) {
         <h3 className="product-card__name">{product.productName}</h3>
 
         <div className="product-card__pricing">
-          <del className="product-card__original-price">{formatCurrency(product.price)}</del>
+          <del className="product-card__original-price">{formatCurrency(product.price * 1.2)}</del>
           <p className="product-card__price">{formatCurrency(product.price)}</p>
           <p className="product-card__installments">{`ou 2x de ${formatCurrency(product.price / 2)} sem juros`}</p>
           <p className="product-card__shipping">Frete grátis</p>
