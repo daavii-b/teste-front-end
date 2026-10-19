@@ -1,81 +1,105 @@
 # Frontend Test
 
-Base de aplicação com React 19, TypeScript, Vite, Sass/SCSS e TanStack Query. A tela inicial contém
-o header da loja Econverse.
+Aplicação de e-commerce feita com React 19, TypeScript, Vite, Sass e TanStack Query.
 
-O alias `@/` aponta para `src/` e está configurado no Vite e no TypeScript.
+## Requisitos
 
-## Começar
+- Node.js `20.19+` ou `22.12+`.
+- pnpm `10.28.0` (versão indicada no `package.json`).
+
+Instale o pnpm globalmente com o npm:
+
+```bash
+npm install --global pnpm@10.28.0
+pnpm --version
+```
+
+O segundo comando deve exibir `10.28.0`.
+
+## Instalação
+
+Na raiz do projeto, instale as dependências:
 
 ```bash
 pnpm install
+```
+
+## Executar em desenvolvimento
+
+Inicie o servidor Vite:
+
+```bash
 pnpm dev
 ```
 
-## Scripts
+Abra a URL exibida no terminal, normalmente `http://localhost:5173`.
 
-- `pnpm dev`: inicia o servidor local.
-- `pnpm build`: verifica os tipos e gera a versão de produção.
-- `pnpm preview`: serve a versão gerada localmente.
-- `pnpm lint` / `pnpm lint:fix`: verifica ou corrige regras do ESLint.
-- `pnpm typecheck`: verifica os tipos TypeScript.
-- `pnpm format` / `pnpm format:check`: formata ou verifica o Prettier.
+## Compilar para produção
 
-O `QueryClientProvider` já envolve a aplicação em `src/main.tsx`. As opções padrão de consulta
-definem `staleTime` de 60 segundos e uma tentativa de repetição em caso de falha.
+```bash
+pnpm build
+```
 
-## Padrão de estilos SCSS
+O comando verifica os tipos TypeScript e gera os arquivos de produção em `dist/`.
 
-`src/index.scss` é o ponto de entrada e importa os tokens e estilos globais na ordem de dependência.
-Os estilos foram separados por responsabilidade:
+Para visualizar localmente a compilação:
+
+```bash
+pnpm preview
+```
+
+O preview costuma ficar disponível em `http://localhost:4173`.
+
+## Validar a aplicação
+
+O projeto não possui uma suíte de testes automatizados ou um comando `pnpm test`. Para validar
+estaticamente o código, use:
+
+```bash
+pnpm lint
+pnpm typecheck
+pnpm build
+```
+
+Para uma verificação manual da integração de produtos, inicie o servidor de desenvolvimento e
+confirme que os carrosséis carregam os itens. Também é possível conferir a resposta do proxy:
+
+```bash
+curl -i http://localhost:5173/api/products
+```
+
+Depois de compilar, use `http://localhost:4173/api/products` para conferir o proxy no Vite Preview.
+
+## API de produtos e CORS
+
+O navegador busca os produtos em `/api/products`. A configuração do Vite encaminha essa rota para o
+endpoint da Econverse durante o desenvolvimento e o Vite Preview local, evitando a chamada
+cross-origin direta que é bloqueada pela política CORS do endpoint.
+
+Esse proxy é apenas local e não faz parte dos arquivos estáticos gerados em `dist/`.
+
+## Estrutura principal
 
 ```text
-src/styles/
-├── _base.scss                 # Reset, elementos globais e container
-├── _breakpoints.scss          # Limites responsivos em Sass
-├── _colors.scss               # Paleta e tokens semânticos de cor
-├── _shadows.scss              # Tokens de sombras
-├── _spacing.scss              # Escala de espaçamento
-├── _typography.scss           # Escala tipográfica
-└── components/
-    └── _header.scss           # Estilos do header e seus breakpoints
+src/
+├── api/products/       # Função HTTP, queries e tipos de produto
+├── components/         # Componentes da interface
+├── lib/                # Funções utilitárias
+└── styles/             # Tokens e estilos Sass por componente
 ```
 
-### Para adicionar um componente
+O alias `@/` aponta para `src/`. `src/index.scss` importa os estilos globais e os parciais dos
+componentes.
 
-1. Crie um parcial em `src/styles/components/`, por exemplo `_product-card.scss`.
-2. Use classes do componente como prefixo e mantenha cada regra perto das regras relacionadas.
-3. Importe o parcial em `src/index.scss` com `@use './styles/components/product-card';`.
-4. Prefira tokens existentes para cores, espaçamentos e tamanhos. Se um valor recorrente ainda não
-   tiver token, adicione-o no parcial responsável pelos tokens.
-5. Mantenha o aninhamento raso: use aninhamento para estados ou elementos diretos, evitando cadeias
-   profundas de seletores.
+## Scripts disponíveis
 
-Exemplo de token e uso:
-
-```scss
-// src/styles/_spacing.scss
-$spacing: (
-  1: 0.25rem,
-  2: 0.5rem,
-  3: 0.75rem,
-  4: 1rem,
-);
-
-// Uso nos estilos do componente
-.product-card {
-  gap: var(--space-3);
-  padding: var(--space-4);
-}
-```
-
-Os mapas de `src/styles/_colors.scss`, `_spacing.scss`, `_shadows.scss` e `_typography.scss` geram
-variáveis CSS semânticas, como `--color-primary`, `--space-4`, `--shadow-header-layer` e
-`--font-size-base`. Para cores novas, prefira
-nomes pelo propósito visual (`border`, `surface-muted`, `subtle-foreground`) em vez de nomes
-dependentes de um componente. Para estilos que só pertencem a um componente, mantenha o seletor no
-parcial desse componente.
-
-Os tamanhos tipográficos usam passos de `0.25rem` (4 px com a raiz padrão de 16 px), geram tokens
-`--font-size-*` e utilitários como `.text-xs`, `.text-base` e `.text-xl`. A raiz do documento continua
-respeitando o tamanho de fonte configurado no navegador. O Sass usa `@use`; evite `@import`.
+| Comando             | Descrição                                |
+| ------------------- | ---------------------------------------- |
+| `pnpm dev`          | Inicia o servidor de desenvolvimento.    |
+| `pnpm build`        | Verifica os tipos e compila a aplicação. |
+| `pnpm preview`      | Serve localmente o build de produção.    |
+| `pnpm lint`         | Verifica o código com ESLint.            |
+| `pnpm lint:fix`     | Aplica correções automáticas do ESLint.  |
+| `pnpm typecheck`    | Verifica os tipos TypeScript.            |
+| `pnpm format`       | Formata os arquivos com Prettier.        |
+| `pnpm format:check` | Verifica a formatação com Prettier.      |
