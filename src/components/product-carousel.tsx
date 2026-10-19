@@ -1,11 +1,12 @@
 import { useId, useRef } from 'react'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type { Product } from '@/api/products/types'
+import { productQueries } from '@/api/products/queries'
 import { ProductCard } from '@/components/product-card'
 
-type ProductCarouselProps = {
+export type ProductCarouselProps = {
   title: string
-  products: Product[]
   tabs?: string[]
   activeTab?: string
   onTabChange?: (tab: string) => void
@@ -29,6 +30,14 @@ export function ProductCarouselEmptyState() {
   return (
     <p className="product-carousel__empty" role="status">
       Nenhum produto disponível no momento.
+    </p>
+  )
+}
+
+export function ProductCarouselLoading() {
+  return (
+    <p className="product-carousel__empty" role="status">
+      Carregando produtos…
     </p>
   )
 }
@@ -73,7 +82,6 @@ export function ProductCarouselCategoryTabs({
 
 export function ProductCarousel({
   title,
-  products,
   tabs,
   activeTab,
   onTabChange,
@@ -81,6 +89,7 @@ export function ProductCarousel({
   onProductSelect,
 }: ProductCarouselProps) {
   const titleId = useId()
+  const { data: products } = useSuspenseQuery(productQueries.all())
 
   const trackRef = useRef<HTMLDivElement>(null)
 
