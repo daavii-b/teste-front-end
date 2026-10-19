@@ -10,6 +10,7 @@ type ProductCarouselProps = {
   activeTab?: string
   onTabChange?: (tab: string) => void
   onBuyProduct?: (product: Product) => void
+  onProductSelect?: (product: Product) => void
 }
 
 export function ProductCarouselHeading({ id, title }: { title: string; id: string }) {
@@ -77,6 +78,7 @@ export function ProductCarousel({
   activeTab,
   onTabChange,
   onBuyProduct,
+  onProductSelect,
 }: ProductCarouselProps) {
   const titleId = useId()
 
@@ -121,7 +123,11 @@ export function ProductCarousel({
                     className="product-carousel__item"
                     key={`${product.productName}-${product.photo}-${index}`}
                   >
-                    <ProductCard onBuy={onBuyProduct} product={product} />
+                    <ProductCard
+                      onBuy={onBuyProduct}
+                      onSelect={onProductSelect}
+                      product={product}
+                    />
                   </li>
                 ))}
               </ul>

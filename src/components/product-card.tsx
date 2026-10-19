@@ -4,11 +4,19 @@ import { formatCurrency } from '@/lib/format-currency'
 type ProductCardProps = {
   product: Product
   onBuy?: (product: Product) => void
+  onSelect?: (product: Product) => void
 }
 
-export function ProductCard({ product, onBuy }: ProductCardProps) {
+export function ProductCard({ product, onBuy, onSelect }: ProductCardProps) {
   return (
     <article className="product-card">
+      <button
+        aria-label={`Ver detalhes de ${product.productName}`}
+        className="product-card__details-trigger"
+        onClick={() => onSelect?.(product)}
+        type="button"
+      />
+
       <div className="product-card__image-wrap">
         <img className="product-card__image" src={product.photo} alt={product.productName} />
       </div>
