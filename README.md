@@ -17,17 +17,12 @@ pnpm dev
 - `pnpm dev`: inicia o servidor local.
 - `pnpm build`: verifica os tipos e gera a versão de produção.
 - `pnpm preview`: serve a versão gerada localmente.
-- `pnpm test`: executa os testes em modo watch.
-- `pnpm test:run`: executa os testes uma vez.
 - `pnpm lint` / `pnpm lint:fix`: verifica ou corrige regras do ESLint.
 - `pnpm typecheck`: verifica os tipos TypeScript.
 - `pnpm format` / `pnpm format:check`: formata ou verifica o Prettier.
 
 O `QueryClientProvider` já envolve a aplicação em `src/main.tsx`. As opções padrão de consulta
 definem `staleTime` de 60 segundos e uma tentativa de repetição em caso de falha.
-
-Os testes de componentes usam Vitest, jsdom e Testing Library. Coloque-os junto ao componente com
-o sufixo `.test.tsx`; `src/App.test.tsx` serve como exemplo inicial.
 
 ## Padrão de estilos SCSS
 
