@@ -2,16 +2,16 @@ import {
   ChevronDown,
   CreditCard,
   Crown,
-  Heart,
-  Package,
   Search,
   ShieldCheck,
-  ShoppingCart,
   Truck,
-  UserCircle,
   type LucideIcon,
 } from 'lucide-react'
 import econverseLogo from '@/assets/brand-econverse.png'
+import boxIcon from '@/assets/icons/box.svg'
+import heartIcon from '@/assets/icons/heart.svg'
+import shoppingCartIcon from '@/assets/icons/shopping-cart.svg'
+import userProfileIcon from '@/assets/icons/user-profile.svg'
 
 type Benefit = {
   icon: LucideIcon
@@ -90,22 +90,22 @@ function SearchForm() {
 function HeaderActions() {
   return (
     <div className="header-actions" role="group" aria-label="Acesso rápido">
-      <button className="header-action" type="button" aria-label="Favoritos" title="Favoritos">
-        <Heart aria-hidden="true" size={26} />
-      </button>
       <button
         className="header-action"
         type="button"
         aria-label="Meus pedidos"
         title="Meus pedidos"
       >
-        <Package aria-hidden="true" size={26} />
+        <img className="header-action__icon" src={boxIcon} alt="" aria-hidden="true" />
+      </button>
+      <button className="header-action" type="button" aria-label="Favoritos" title="Favoritos">
+        <img className="header-action__icon" src={heartIcon} alt="" aria-hidden="true" />
       </button>
       <button className="header-action" type="button" aria-label="Minha conta" title="Minha conta">
-        <UserCircle aria-hidden="true" size={26} />
+        <img className="header-action__icon" src={userProfileIcon} alt="" aria-hidden="true" />
       </button>
       <button className="header-action" type="button" aria-label="Carrinho" title="Carrinho">
-        <ShoppingCart aria-hidden="true" size={26} />
+        <img className="header-action__icon" src={shoppingCartIcon} alt="" aria-hidden="true" />
       </button>
     </div>
   )
